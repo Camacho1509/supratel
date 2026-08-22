@@ -1,60 +1,209 @@
 .hero {
   background: var(--color-primary-container);
-  padding: 64px var(--spacing-margin-desktop);
-  display: flex;
-  justify-content: space-between;
-  gap: 48px;
+  padding: 72px 32px;
 }
 
-.hero h1 {
-  font-size: 56px;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  margin-bottom: 16px;
+.heroContent {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  align-items: center;
+  gap: 56px;
 }
 
-.hero p {
-  font-size: 16px;
-  line-height: 1.6;
-  max-width: 480px;
+.heroText h1 {
+  margin-bottom: 18px;
   color: var(--color-deep-black);
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.heroText p {
+  max-width: 500px;
+  color: var(--color-deep-black);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.heroImage {
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #252525;
+}
+
+.imagePlaceholder {
+  width: 85%;
+  padding: 100px 20px;
+  color: var(--color-primary-container);
+  text-align: center;
+  font-size: 42px;
+  font-weight: 800;
+  border: 2px solid var(--color-primary-container);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 520px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(27, 28, 28, 0.35);
+}
+
+.stats span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--color-primary);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.stats strong {
+  display: block;
+  color: var(--color-deep-black);
+  font-size: 20px;
+}
+
+.learnMore {
+  margin-top: 28px;
+  padding: 14px 30px;
+  background: var(--color-deep-black);
+  color: white;
+  border: 0;
+  border-radius: var(--radius-default);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.learnMore:hover {
+  background: #000;
 }
 
 .expertise {
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: var(--spacing-section-gap) var(--spacing-margin-desktop);
+  padding: 80px 32px;
 }
 
 .expertise h2 {
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-deep-black);
   font-size: 32px;
   font-weight: 700;
-  border-bottom: 1px solid var(--color-outline-variant);
-  padding-bottom: 16px;
-  margin-bottom: 32px;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-gutter);
+  gap: 28px;
 }
 
 .card {
+  min-height: 190px;
+  padding: 24px;
   background: var(--color-surface-container-lowest);
   border: 1px solid var(--color-outline-variant);
   border-radius: var(--radius-default);
-  padding: var(--spacing-card-padding, 24px);
+}
+
+.card:hover {
+  border: 2px solid var(--color-primary-container);
+}
+
+.iconPlaceholder {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 20px;
+  background: var(--color-surface-container-high);
+  color: var(--color-deep-black);
 }
 
 .card h3 {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  font-size: 17px;
+  line-height: 1.3;
 }
 
 .card p {
+  color: var(--color-secondary);
   font-size: 14px;
+  line-height: 1.5;
+}
+
+.operations {
+  max-width: var(--container-max);
+  margin: 0 auto 80px;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 1fr 1.7fr;
+  border: 1px solid var(--color-outline-variant);
+}
+
+.operationsText {
+  padding: 48px 24px;
+  background: var(--color-surface-container-low);
+}
+
+.operationsText h2 {
+  margin-bottom: 20px;
+  font-size: 30px;
+  line-height: 1.2;
+}
+
+.operationsText p {
+  margin-bottom: 24px;
   color: var(--color-secondary);
   line-height: 1.5;
+}
+
+.operationsText ul {
+  padding-left: 20px;
+  color: var(--color-secondary);
+  line-height: 2;
+}
+
+.mapPlaceholder {
+  min-height: 340px;
+  display: grid;
+  place-items: center;
+  background: #e5e5e5;
+  color: #777;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .heroContent,
+  .operations {
+    grid-template-columns: 1fr;
+  }
+
+  .heroText h1 {
+    font-size: 38px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .expertise {
+    padding: 56px 20px;
+  }
+
+  .hero {
+    padding: 56px 20px;
+  }
+
+  .operations {
+    margin: 0 20px 56px;
+    padding: 0;
+  }
 }

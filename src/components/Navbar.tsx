@@ -8,7 +8,7 @@ export default function Navbar() {
         <div className={styles.logo}>SUPRATEL</div>
         <nav className={styles.links}>
           <Link href="/">Home</Link>
-          <Link href="/catalogo">Catalog</Link>
+          <Link href="/pagina2">Catalog</Link>
         </nav>
         <button className={styles.cta}>Contact us</button>
       </div>
