@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { products } from "@/data/products";
+import { catalogCategories as products } from "@/data/catalogCategories";
 import styles from "./pagina.module.css";
 
 export const metadata: Metadata = {
