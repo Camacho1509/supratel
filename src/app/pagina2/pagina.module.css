@@ -1,11 +1,15 @@
 .catalogPage {
   min-height: 100vh;
-  padding: 32px 0 64px;
+  padding: 26px 0 52px;
   background: var(--color-surface);
 }
 
+/* ==================================================
+   CONTENEDOR GENERAL
+   ================================================== */
+
 .pageFrame {
-  width: min(100% - 64px, 1500px);
+  width: min(100% - 64px, 1250px);
   margin: 0 auto;
   overflow: visible;
 }
@@ -13,42 +17,48 @@
 .container {
   width: 100%;
   margin: 0 auto;
-  padding: 48px;
+  padding: 38px;
 }
 
-/* ===============================
+/* ==================================================
    ENCABEZADO
-   =============================== */
+   ================================================== */
 
 .pageHeader {
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 
 .pageHeader h1 {
   margin: 0;
+
   color: var(--color-deep-black);
-  font-size: clamp(28px, 4vw, 42px);
+
+  font-size: clamp(26px, 3.2vw, 34px);
   font-weight: 800;
   line-height: 1.15;
 }
 
 .yellowLine {
   width: 100%;
-  height: 6px;
-  margin-top: 18px;
+  height: 5px;
+
+  margin-top: 14px;
+
   background: var(--color-primary-container);
 }
 
-/* ===============================
-   SECCIONES
-   =============================== */
+/* ==================================================
+   SECCIONES PRINCIPALES
+   ================================================== */
 
 .categorySection {
   position: relative;
+
   display: grid;
 
-  min-height: 330px;
-  margin-bottom: 40px;
+  min-height: 265px;
+
+  margin-bottom: 32px;
 
   overflow: hidden;
   isolation: isolate;
@@ -62,17 +72,21 @@
 /* ISP */
 .categorySection.reverse {
   grid-template-columns: 64% 36%;
-  margin-bottom: 72px;
+
+  margin-bottom: 58px;
 }
 
-/* ===============================
+/* ==================================================
    ELEMENTOS GENERALES
-   =============================== */
+   ================================================== */
 
 .categoryImage {
   position: relative;
-  min-height: 330px;
+
+  min-height: 265px;
+
   overflow: hidden;
+
   z-index: 1;
 }
 
@@ -88,7 +102,7 @@
   flex-direction: column;
   justify-content: center;
 
-  min-height: 330px;
+  min-height: 265px;
 
   color: var(--color-deep-black);
   background: var(--color-primary-container);
@@ -97,18 +111,19 @@
 }
 
 .categoryContent h2 {
-  margin: 0 0 16px;
+  margin: 0 0 13px;
 
-  font-size: clamp(25px, 3vw, 36px);
+  font-size: clamp(23px, 2.4vw, 30px);
   font-weight: 800;
   line-height: 1.1;
 }
 
 .categoryContent p {
   max-width: 680px;
+
   margin: 0;
 
-  font-size: 15px;
+  font-size: 13px;
   line-height: 1.6;
 }
 
@@ -118,22 +133,16 @@
    ================================================== */
 
 /*
-   La fotografía se extiende por debajo
+   La fotografía se extiende ligeramente
+   hacia la derecha para quedar debajo
    de la diagonal.
-
-   De esta manera no aparece el triángulo
-   blanco grande que teníamos antes.
 */
 
 .categorySection:not(.reverse) .categoryImage {
   position: relative;
 
-  min-height: 330px;
+  min-height: 265px;
 
-  /*
-     Extendemos la imagen hacia la derecha.
-     Queda debajo del amarillo y de la línea.
-  */
   width: calc(100% + 5vw);
 
   clip-path: none;
@@ -142,28 +151,25 @@
 }
 
 /*
-   El amarillo empieza en su columna normal.
-   NO tiene margin-left negativo.
+   El amarillo empieza en su posición normal.
+   No invade directamente la fotografía.
 */
 
 .categorySection:not(.reverse) .categoryContent {
   position: relative;
 
-  min-height: 330px;
+  min-height: 265px;
 
   margin-left: 0;
 
   padding:
-    48px
-    64px
-    48px
-    96px;
+    38px
+    52px
+    38px
+    78px;
 
   background: var(--color-primary-container);
 
-  /*
-     Solo inclinamos el borde izquierdo.
-  */
   clip-path: polygon(
     6% 0,
     100% 0,
@@ -179,8 +185,7 @@
    ================================================== */
 
 /*
-   La línea sigue exactamente la diagonal
-   del bloque amarillo.
+   Mantenemos la diagonal que ya quedó bien.
 */
 
 .categorySection:not(.reverse)::after {
@@ -191,14 +196,6 @@
 
   background: var(--color-surface);
 
-  /*
-     Borde amarillo:
-     arriba ≈ 41.7%
-     abajo ≈ 38%
-
-     La línea blanca cubre ambos lados
-     de ese borde.
-  */
   clip-path: polygon(
     40.9% 0,
     42.1% 0,
@@ -207,6 +204,7 @@
   );
 
   z-index: 4;
+
   pointer-events: none;
 }
 
@@ -218,13 +216,13 @@
 .categorySection.reverse .categoryContent {
   position: relative;
 
-  min-height: 330px;
+  min-height: 265px;
 
   padding:
-    48px
-    100px
-    48px
-    64px;
+    38px
+    80px
+    38px
+    52px;
 
   background: var(--color-primary-container);
 
@@ -239,14 +237,13 @@
 }
 
 /*
-   Esta sección ya estaba funcionando bien,
-   así que mantenemos su comportamiento.
+   La imagen entra detrás del bloque amarillo.
 */
 
 .categorySection.reverse .categoryImage {
   position: relative;
 
-  min-height: 330px;
+  min-height: 265px;
 
   margin-left: -4vw;
 
@@ -258,6 +255,11 @@
 /* ==================================================
    LÍNEA BLANCA ISP
    ================================================== */
+
+/*
+   Esta es la diagonal que ya habíamos
+   dejado correctamente.
+*/
 
 .categorySection.reverse::after {
   content: "";
@@ -275,28 +277,33 @@
   );
 
   z-index: 4;
+
   pointer-events: none;
 }
 
-/* ===============================
+/* ==================================================
    PRODUCTOS
-   =============================== */
+   ================================================== */
 
 .productsSection {
-  margin-top: 20px;
+  margin-top: 16px;
 }
 
 .productsGrid {
   display: grid;
+
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+
+  gap: 20px;
 }
 
 .productCard {
-  min-height: 250px;
-  padding: 18px;
+  min-height: 200px;
+
+  padding: 14px;
 
   background: var(--color-surface-container-lowest);
+
   border: 1px solid var(--color-outline-variant);
 
   transition:
@@ -306,13 +313,16 @@
 
 .productCard:hover {
   border-color: var(--color-primary-container);
+
   transform: translateY(-3px);
 }
 
 .productImage {
   position: relative;
-  height: 175px;
-  margin-bottom: 18px;
+
+  height: 140px;
+
+  margin-bottom: 14px;
 }
 
 .productImage img {
@@ -323,9 +333,10 @@
   margin: 0;
 
   color: var(--color-deep-black);
+
   text-align: center;
 
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 1.25;
 }
@@ -335,8 +346,24 @@
    ================================================== */
 
 @media (max-width: 1024px) {
+  .pageFrame {
+    width: calc(100% - 40px);
+  }
+
   .container {
-    padding: 36px 28px 56px;
+    padding: 30px 22px 44px;
+  }
+
+  /* ===============================
+     HEADER TABLET
+     =============================== */
+
+  .pageHeader {
+    margin-bottom: 28px;
+  }
+
+  .pageHeader h1 {
+    font-size: clamp(25px, 3.4vw, 32px);
   }
 
   /* ===============================
@@ -349,6 +376,7 @@
 
   .categorySection:not(.reverse) .categoryImage {
     width: calc(100% + 5vw);
+
     clip-path: none;
   }
 
@@ -356,10 +384,10 @@
     margin-left: 0;
 
     padding:
-      42px
-      48px
-      42px
-      82px;
+      34px
+      40px
+      34px
+      66px;
 
     clip-path: polygon(
       6% 0,
@@ -368,12 +396,6 @@
       0 100%
     );
   }
-
-  /*
-     42% + 6% de la columna amarilla
-     coloca el inicio superior alrededor
-     de 45.5%.
-  */
 
   .categorySection:not(.reverse)::after {
     clip-path: polygon(
@@ -394,10 +416,10 @@
 
   .categorySection.reverse .categoryContent {
     padding:
-      42px
-      90px
-      42px
-      48px;
+      34px
+      72px
+      34px
+      40px;
   }
 
   .categorySection.reverse .categoryImage {
@@ -411,6 +433,22 @@
       63.1% 100%,
       61.9% 100%
     );
+  }
+
+  /* ===============================
+     PRODUCTOS TABLET
+     =============================== */
+
+  .productsGrid {
+    gap: 18px;
+  }
+
+  .productCard {
+    min-height: 190px;
+  }
+
+  .productImage {
+    height: 130px;
   }
 }
 
@@ -428,7 +466,7 @@
   }
 
   .container {
-    padding: 28px 16px 48px;
+    padding: 24px 16px 40px;
   }
 
   /* ===============================
@@ -436,11 +474,16 @@
      =============================== */
 
   .pageHeader {
-    margin-bottom: 28px;
+    margin-bottom: 26px;
+  }
+
+  .pageHeader h1 {
+    font-size: clamp(25px, 8vw, 32px);
   }
 
   .yellowLine {
     height: 5px;
+
     margin-top: 14px;
   }
 
@@ -451,16 +494,18 @@
   .categorySection,
   .categorySection.reverse {
     display: flex;
+
     flex-direction: column;
 
     min-height: auto;
+
     margin-bottom: 28px;
 
     overflow: hidden;
   }
 
   /*
-     Quitamos las diagonales en móvil.
+     En móvil eliminamos las diagonales.
   */
 
   .categorySection:not(.reverse)::after,
@@ -473,7 +518,9 @@
   .categorySection:not(.reverse) .categoryContent,
   .categorySection.reverse .categoryContent {
     width: auto;
+
     margin: 0;
+
     clip-path: none;
   }
 
@@ -483,7 +530,13 @@
 
   .categoryImage {
     order: 1;
-    min-height: 230px;
+
+    min-height: 220px;
+  }
+
+  .categorySection:not(.reverse) .categoryImage,
+  .categorySection.reverse .categoryImage {
+    min-height: 220px;
   }
 
   /* ===============================
@@ -494,18 +547,29 @@
     order: 2;
 
     min-height: auto;
-    padding: 32px 24px;
+
+    padding: 28px 22px;
   }
 
   .categorySection:not(.reverse) .categoryContent,
   .categorySection.reverse .categoryContent {
+    min-height: auto;
+
     margin: 0;
-    padding: 32px 24px;
+
+    padding: 28px 22px;
+
     clip-path: none;
   }
 
   .categoryContent h2 {
-    font-size: 28px;
+    margin-bottom: 12px;
+
+    font-size: 26px;
+  }
+
+  .categoryContent p {
+    font-size: 14px;
   }
 
   /* ===============================
@@ -513,15 +577,26 @@
      =============================== */
 
   .productsSection {
-    margin-top: 48px;
+    margin-top: 40px;
   }
 
   .productsGrid {
     grid-template-columns: 1fr;
+
     gap: 18px;
   }
 
   .productCard {
-    min-height: 230px;
+    min-height: 220px;
+
+    padding: 16px;
+  }
+
+  .productImage {
+    height: 160px;
+  }
+
+  .productCard h2 {
+    font-size: 17px;
   }
 }

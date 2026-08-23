@@ -1,15 +1,41 @@
+import Image from "next/image";
 import styles from "@/css/Footer.module.css";
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <div>
-          <p className={styles.logo}>SUPRATEL</p>
-          <p className={styles.copy}>© 2026 SUPRATEL Infrastructure Global Operations. All rights reserved.</p>
+        {/* MARCA */}
+        <div className={styles.brand}>
+          <Image
+            src="/Logo.svg"
+            alt="SUPRATEL logo"
+            width={52}
+            height={52}
+            className={styles.logoIcon}
+          />
+
+          <Image
+            src="/Logosinfondo.png"
+            alt="SUPRATEL"
+            width={230}
+            height={45}
+            className={styles.logoText}
+          />
         </div>
-        <div>
-          <p className={styles.label}>LEGAL</p>
+
+        {/* COPYRIGHT */}
+        <p className={styles.copy}>
+          © 2026 SUPRATEL Infrastructure Global Operations.
+          <br />
+          All rights reserved.
+        </p>
+
+        {/* LEGAL */}
+        <p className={styles.label}>LEGAL</p>
+
+        {/* LINKS */}
+        <div className={styles.legalLinks}>
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>
         </div>

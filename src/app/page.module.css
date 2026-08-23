@@ -1,209 +1,604 @@
+/* ==================================================
+   HERO
+   ================================================== */
+
 .hero {
-  background: var(--color-primary-container);
-  padding: 72px 32px;
+  position: relative;
+  overflow: hidden;
+
+  /*
+    El navbar mide 80px.
+    El Hero ocupa todo el resto de la pantalla.
+  */
+  min-height: calc(100svh - 80px);
+
+  padding: 56px 32px;
+
+  display: flex;
+  align-items: center;
+
+  /*
+    Degradado principal amarillo.
+  */
+  background:
+    linear-gradient(
+      110deg,
+      #c99500 0%,
+      #e2ae00 25%,
+      #f2c500 55%,
+      #ffd700 78%,
+      #ffe23d 100%
+    );
+
+  isolation: isolate;
 }
 
+/* ==================================================
+   FRANJAS HORIZONTALES INFERIORES
+   ================================================== */
+
+.hero::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 28%;
+
+  background:
+    linear-gradient(
+      to bottom,
+
+      rgba(126, 88, 0, 0.08) 0%,
+      rgba(126, 88, 0, 0.08) 28%,
+
+      rgba(255, 255, 255, 0.07) 28%,
+      rgba(255, 255, 255, 0.07) 54%,
+
+      rgba(126, 88, 0, 0.1) 54%,
+      rgba(126, 88, 0, 0.1) 76%,
+
+      rgba(255, 255, 255, 0.05) 76%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+
+  z-index: -1;
+
+  pointer-events: none;
+}
+
+/* ==================================================
+   LÍNEAS DIAGONALES INFERIORES
+   ================================================== */
+
+.hero::after {
+  content: "";
+
+  position: absolute;
+
+  right: -4%;
+  bottom: 0;
+
+  width: 55%;
+  height: 18%;
+
+  background:
+    repeating-linear-gradient(
+      135deg,
+
+      rgba(112, 93, 0, 0.13) 0,
+      rgba(112, 93, 0, 0.13) 16px,
+
+      transparent 16px,
+      transparent 34px
+    );
+
+  clip-path: polygon(
+    25% 0,
+    100% 0,
+    100% 100%,
+    0 100%
+  );
+
+  z-index: -1;
+
+  pointer-events: none;
+}
+
+/* ==================================================
+   CONTENIDO DEL HERO
+   ================================================== */
+
 .heroContent {
+  position: relative;
+
+  z-index: 1;
+
+  width: 100%;
+
   max-width: var(--container-max);
+
   margin: 0 auto;
+
   display: grid;
+
   grid-template-columns: 0.8fr 1.2fr;
+
   align-items: center;
+
   gap: 56px;
 }
 
+/* ===============================
+   TEXTO HERO
+   =============================== */
+
 .heroText h1 {
   margin-bottom: 18px;
+
   color: var(--color-deep-black);
+
   font-size: 48px;
+
   font-weight: 800;
+
   line-height: 1.1;
 }
 
 .heroText p {
   max-width: 500px;
+
   color: var(--color-deep-black);
+
   font-size: 17px;
+
   line-height: 1.6;
 }
 
+/* ===============================
+   IMAGEN / PLACEHOLDER HERO
+   =============================== */
+
 .heroImage {
   min-height: 360px;
+
   display: flex;
+
   align-items: center;
   justify-content: center;
+
   background: #252525;
 }
 
 .imagePlaceholder {
   width: 85%;
+
   padding: 100px 20px;
+
   color: var(--color-primary-container);
+
   text-align: center;
+
   font-size: 42px;
+
   font-weight: 800;
+
   border: 2px solid var(--color-primary-container);
 }
 
+/* ==================================================
+   ESTADÍSTICAS
+   ================================================== */
+
 .stats {
   display: grid;
+
   grid-template-columns: repeat(2, 1fr);
+
   gap: 24px;
+
   max-width: 520px;
+
   margin-top: 32px;
+
   padding-top: 24px;
+
   border-top: 1px solid rgba(27, 28, 28, 0.35);
 }
 
 .stats span {
   display: block;
+
   margin-bottom: 4px;
+
   color: var(--color-primary);
+
   font-size: 11px;
+
   font-weight: 800;
+
   letter-spacing: 0.08em;
 }
 
 .stats strong {
   display: block;
+
   color: var(--color-deep-black);
+
   font-size: 20px;
 }
 
+/* ==================================================
+   BOTÓN LEARN MORE
+   ================================================== */
+
 .learnMore {
   margin-top: 28px;
+
   padding: 14px 30px;
+
   background: var(--color-deep-black);
+
   color: white;
+
   border: 0;
+
   border-radius: var(--radius-default);
+
   font-weight: 700;
+
   cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .learnMore:hover {
   background: #000;
+
+  transform: translateY(-2px);
 }
+
+/* ==================================================
+   OUR EXPERTISE
+   ================================================== */
 
 .expertise {
   max-width: var(--container-max);
+
   margin: 0 auto;
+
   padding: 80px 32px;
 }
 
 .expertise h2 {
   margin-bottom: 28px;
+
   padding-bottom: 16px;
+
   border-bottom: 1px solid var(--color-deep-black);
+
   font-size: 32px;
+
   font-weight: 700;
 }
 
+/* ===============================
+   GRID
+   =============================== */
+
 .grid {
   display: grid;
+
   grid-template-columns: repeat(3, 1fr);
+
   gap: 28px;
 }
 
+/* ===============================
+   TARJETAS
+   =============================== */
+
 .card {
   min-height: 190px;
+
   padding: 24px;
+
   background: var(--color-surface-container-lowest);
+
   border: 1px solid var(--color-outline-variant);
+
   border-radius: var(--radius-default);
+
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .card:hover {
-  border: 2px solid var(--color-primary-container);
+  border-color: var(--color-primary-container);
+
+  transform: translateY(-3px);
 }
+
+/* ===============================
+   ICONO PLACEHOLDER
+   =============================== */
 
 .iconPlaceholder {
   width: 44px;
+
   height: 44px;
+
   display: grid;
+
   place-items: center;
+
   margin-bottom: 20px;
+
   background: var(--color-surface-container-high);
+
   color: var(--color-deep-black);
 }
 
 .card h3 {
   margin-bottom: 10px;
+
   font-size: 17px;
+
   line-height: 1.3;
 }
 
 .card p {
   color: var(--color-secondary);
+
   font-size: 14px;
+
   line-height: 1.5;
 }
 
+/* ==================================================
+   GLOBAL OPERATIONS
+   ================================================== */
+
 .operations {
   max-width: var(--container-max);
+
   margin: 0 auto 80px;
-  padding: 0 32px;
+
+  padding: 0;
+
   display: grid;
+
   grid-template-columns: 1fr 1.7fr;
+
   border: 1px solid var(--color-outline-variant);
+
+  overflow: hidden;
 }
 
+/* ===============================
+   TEXTO OPERATIONS
+   =============================== */
+
 .operationsText {
-  padding: 48px 24px;
+  padding: 48px 64px;
+
   background: var(--color-surface-container-low);
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
 }
 
 .operationsText h2 {
-  margin-bottom: 20px;
+  margin: 0 0 20px;
+
   font-size: 30px;
+
   line-height: 1.2;
 }
 
 .operationsText p {
-  margin-bottom: 24px;
+  margin: 0 0 24px;
+
   color: var(--color-secondary);
+
   line-height: 1.5;
 }
 
 .operationsText ul {
+  margin: 0;
+
   padding-left: 20px;
+
   color: var(--color-secondary);
+
   line-height: 2;
 }
 
-.mapPlaceholder {
+/* ==================================================
+   MAPA
+   ================================================== */
+
+.mapBox {
+  width: 100%;
+
+  height: 100%;
+
   min-height: 340px;
-  display: grid;
-  place-items: center;
+
+  overflow: hidden;
+
+  display: flex;
+
+  align-items: stretch;
+
+  justify-content: stretch;
+
   background: #e5e5e5;
-  color: #777;
-  font-weight: 700;
 }
 
+.mapImage {
+  display: block;
+
+  width: 100%;
+
+  height: 100%;
+
+  min-height: 340px;
+
+  object-fit: cover;
+
+  object-position: center;
+}
+
+/* ==================================================
+   TABLET
+   ================================================== */
+
+@media (max-width: 1024px) {
+  .hero {
+    padding: 48px 28px;
+  }
+
+  .heroContent {
+    gap: 36px;
+  }
+
+  .heroText h1 {
+    font-size: 42px;
+  }
+
+  .heroText p {
+    font-size: 16px;
+  }
+
+  .heroImage {
+    min-height: 320px;
+  }
+
+  .imagePlaceholder {
+    padding: 85px 20px;
+
+    font-size: 36px;
+  }
+
+  .operationsText {
+    padding: 42px 44px;
+  }
+}
+
+/* ==================================================
+   MÓVIL
+   ================================================== */
+
 @media (max-width: 768px) {
-  .heroContent,
-  .operations {
+  /* ===============================
+     HERO
+     =============================== */
+
+  .hero {
+    /*
+      Navbar móvil = 70px.
+    */
+    min-height: calc(100svh - 70px);
+
+    padding: 48px 20px;
+
+    align-items: flex-start;
+  }
+
+  .heroContent {
     grid-template-columns: 1fr;
+
+    gap: 36px;
   }
 
   .heroText h1 {
     font-size: 38px;
   }
 
-  .grid {
-    grid-template-columns: 1fr;
+  .heroText p {
+    font-size: 16px;
   }
+
+  .heroImage {
+    min-height: 280px;
+  }
+
+  .imagePlaceholder {
+    width: 90%;
+
+    padding: 72px 18px;
+
+    font-size: 32px;
+  }
+
+  /* Reducimos las decoraciones inferiores */
+  .hero::before {
+    height: 18%;
+  }
+
+  .hero::after {
+    width: 80%;
+
+    height: 12%;
+  }
+
+  /* ===============================
+     STATS
+     =============================== */
+
+  .stats {
+    gap: 20px;
+
+    margin-top: 28px;
+  }
+
+  /* ===============================
+     EXPERTISE
+     =============================== */
 
   .expertise {
     padding: 56px 20px;
   }
 
-  .hero {
-    padding: 56px 20px;
+  .expertise h2 {
+    font-size: 28px;
   }
 
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* ===============================
+     GLOBAL OPERATIONS
+     =============================== */
+
   .operations {
+    grid-template-columns: 1fr;
+
     margin: 0 20px 56px;
+
     padding: 0;
+  }
+
+  .operationsText {
+    padding: 36px 28px;
+  }
+
+  .mapBox {
+    min-height: 280px;
+  }
+
+  .mapImage {
+    min-height: 280px;
   }
 }

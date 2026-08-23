@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { products } from "@/data/products";
 import styles from "./pagina.module.css";
+
+export const metadata: Metadata = {
+  title: "Catalog",
+  description: "SUPRATEL product catalog",
+};
 
 export default function CatalogoPage() {
   return (

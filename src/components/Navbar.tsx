@@ -1,16 +1,140 @@
+"use client";
+
+import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import styles from "@/css/Navbar.module.css";
 
 export default function Navbar() {
+  const pathname = usePathname();
+
   return (
     <header className={styles.navbar}>
       <div className={styles.container}>
-        <div className={styles.logo}>SUPRATEL</div>
+        {/* =====================================
+            MARCA
+        ===================================== */}
+        <Link href="/" className={styles.brand}>
+          <Image
+            src="/Logo.svg"
+            alt="SUPRATEL logo"
+            width={60}
+            height={60}
+            className={styles.logoIcon}
+            priority
+          />
+
+          <Image
+            src="/Logosinfondo.png"
+            alt="SUPRATEL"
+            width={220}
+            height={50}
+            className={styles.logoText}
+            priority
+          />
+        </Link>
+
+        {/* =====================================
+            NAVEGACIÓN
+        ===================================== */}
         <nav className={styles.links}>
-          <Link href="/">Home</Link>
-          <Link href="/pagina2">Catalog</Link>
+          <Link
+            href="/"
+            className={pathname === "/" ? styles.activeLink : ""}
+          >
+            Home
+          </Link>
+
+          <Link
+            href="/pagina2"
+            className={pathname === "/pagina2" ? styles.activeLink : ""}
+          >
+            Catalog
+          </Link>
         </nav>
-        <button className={styles.cta}>Contact us</button>
+
+        {/* =====================================
+            CONTACTO + IDIOMA
+        ===================================== */}
+        <div className={styles.rightArea}>
+          <div className={styles.contactInfo}>
+            {/* WHATSAPP */}
+            <a
+              href="https://wa.me/525543241575"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.contactLink}
+              aria-label="Contact SUPRATEL by WhatsApp"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                className={styles.contactIcon}
+              >
+                <path
+                  fill="currentColor"
+                  d="M12 2a9.7 9.7 0 0 0-8.4 14.6L2 22l5.6-1.5A9.8 9.8 0 1 0 12 2Zm0 17.7c-1.5 0-3-.4-4.2-1.2l-.3-.2-3.3.9.9-3.2-.2-.3A7.8 7.8 0 1 1 12 19.7Zm4.3-5.8c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.6.8-.8 1-.1.1-.3.2-.5.1-1.4-.7-2.5-1.5-3.4-3-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.6l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.8.8-1.2 1.7-1.2 2.9 0 1.7 1.2 3.4 1.4 3.6.2.2 2.4 3.7 5.9 5.1 2.2.9 3.1 1 4.2.9.7-.1 2.2-.9 2.5-1.8.3-.9.3-1.6.2-1.8-.1-.1-.3-.2-.6-.3Z"
+                />
+              </svg>
+
+              <span>(52) 55 4324 1575</span>
+            </a>
+
+            {/* EMAIL */}
+            <a
+              href="mailto:contacto@eepsa.com.mx"
+              className={styles.contactLink}
+              aria-label="Send an email to SUPRATEL"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                className={styles.contactIcon}
+              >
+                <path
+                  fill="currentColor"
+                  d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"
+                />
+              </svg>
+
+              <span>contacto@eepsa.com.mx</span>
+            </a>
+          </div>
+
+          {/* =====================================
+              IDIOMA
+              Por ahora solo visual.
+          ===================================== */}
+          <button
+            type="button"
+            className={styles.language}
+            aria-label="Language: English"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              className={styles.globeIcon}
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="9"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+              />
+
+              <path
+                d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3c-2.4 2.5-3.6 5.5-3.6 9S9.6 18.5 12 21"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+              />
+            </svg>
+
+            <span>EN</span>
+          </button>
+        </div>
       </div>
     </header>
   );

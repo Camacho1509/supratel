@@ -10,7 +10,7 @@ export const products: Product[] = [
   },
   {
     name: "Cable support hardware",
-    image: "/images/cable-support.jpg",
+    image: "/img/Catalogo/Electricista.webp",
   },
   {
     name: "Aerial fiber enclosure",

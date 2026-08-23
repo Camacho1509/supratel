@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { expertise } from "@/data/expertise";
 import styles from "./page.module.css";
 
@@ -51,7 +52,7 @@ export default function Home() {
       </section>
 
       <section className={styles.expertise}>
-        <h2>3. OUR EXPERTISE</h2>
+        <h2>OUR EXPERTISE</h2>
 
         <div className={styles.grid}>
           {expertise.map((item) => (
@@ -65,22 +66,38 @@ export default function Home() {
       </section>
 
       <section className={styles.operations}>
-        <div className={styles.operationsText}>
-          <h2>Global Operations & Logistics Centers</h2>
-          <p>
-            Strategic hubs ensuring rapid deployment across 4 continents and
-            12+ countries.
-          </p>
+      <div className={styles.operationsText}>
+        <h2>Global Operations & Logistics Centers</h2>
 
-          <ul>
-            <li>Headquarters: Belgium</li>
-            <li>5 Regional Logistics Hubs</li>
-          </ul>
-        </div>
+        <p>
+          Strategic hubs ensuring rapid deployment across 4 continents and
+          12+ countries.
+        </p>
 
-        <div className={styles.mapPlaceholder}>
-          GLOBAL OPERATIONS MAP
-        </div>
+        <ul>
+          <li>Headquarters: Belgium</li>
+
+          <li
+            style={{
+              color: "#FFD600",
+            }}
+          >
+            <span style={{ color: "var(--color-secondary)" }}>
+              5 Regional Logistics Hubs
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <div className={styles.mapBox}>
+        <Image
+          src="/Map.png"
+          alt="Global Operations Map"
+          width={1600}
+          height={900}
+          className={styles.mapImage}
+        />
+      </div>
       </section>
     </main>
   );
