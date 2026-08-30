@@ -24,24 +24,22 @@
 }
 
 .sidebarHeader {
-  min-height: 190px;
+  min-height: 125px;
 
-  padding: 56px 26px 30px;
+  padding: 28px 26px 22px;
 
   display: flex;
   flex-direction: column;
-
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
 .sidebarAccent {
-  width: 32px;
+  width: 40px;
   height: 2px;
 
   margin-bottom: 18px;
 
-  background:
-    var(--color-primary-container);
+  background: var(--color-primary-container);
 }
 
 .sidebarHeader h2 {
@@ -127,19 +125,23 @@
 }
 
 .sidebarIcon {
-  font-size: 18px;
-}
-
-.sidebarDot {
-  width: 7px;
-  height: 7px;
+  width: 22px;
+  height: 22px;
 
   flex-shrink: 0;
 
-  border: 1px solid
-    var(--color-deep-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  transform: rotate(45deg);
+  color: currentColor;
+}
+
+.sidebarIcon svg {
+  width: 18px;
+  height: 18px;
+
+  stroke-width: 1.8;
 }
 
 /* ==================================================
@@ -514,9 +516,6 @@
     padding-left: 14px;
   }
 
-  .sidebarDot {
-    display: none;
-  }
 
   .catalogContent {
     padding:
@@ -549,5 +548,187 @@
 
   .categoryPreview {
     width: 100%;
+  }
+}
+
+/* ==================================================
+   TRANSICIÓN ENTRE CATEGORÍAS
+   ================================================== */
+
+.catalogView {
+  animation: catalogViewEnter 0.38s ease both;
+}
+
+@keyframes catalogViewEnter {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Reduce animaciones si el usuario lo solicita
+   desde su sistema operativo */
+@media (prefers-reduced-motion: reduce) {
+  .catalogView {
+    animation: none;
+  }
+}
+
+
+/* ==================================================
+   HEADER DEL CATÁLOGO
+   ================================================== */
+
+.catalogHeader {
+  margin-bottom: 52px;
+  padding-bottom: 28px;
+
+  border-bottom: 1px solid var(--color-deep-black);
+}
+
+.catalogHeader h1 {
+  margin: 0 0 24px;
+
+  color: var(--color-deep-black);
+
+  font-size: clamp(36px, 4vw, 52px);
+  font-weight: 800;
+  line-height: 1;
+
+  text-transform: uppercase;
+}
+
+/* ==================================================
+   GLOBAL CATALOG
+   ================================================== */
+
+.globalDescription {
+  max-width: 850px;
+
+  margin: 0;
+
+  color: var(--color-secondary);
+
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ==================================================
+   PRODUCT OVERVIEW
+   ================================================== */
+
+.productOverview {
+  width: 100%;
+  max-width: none;
+}
+
+/* ===============================
+   TÍTULO
+   =============================== */
+
+.productOverview h3 {
+  margin: 0;
+
+  color: var(--color-deep-black);
+
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.2;
+
+  text-transform: uppercase;
+}
+
+/* ===============================
+   LÍNEA AMARILLA
+   =============================== */
+
+.overviewLine {
+  width: 100%;
+  height: 4px;
+
+  margin: 12px 0 14px;
+
+  background: var(--color-primary-container);
+}
+
+/* ===============================
+   DESCRIPCIÓN
+   =============================== */
+
+.productOverview p {
+  width: 100%;
+  max-width: none;
+
+  margin: 0;
+
+  color: var(--color-deep-black);
+
+  font-size: 15px;
+  line-height: 1.65;
+
+  text-align: justify;
+}
+
+/* ==================================================
+   GLOBAL CATALOG
+   Solo para la descripción principal
+   ================================================== */
+
+.globalDescription {
+  max-width: 850px;
+
+  margin: 0;
+
+  color: var(--color-secondary);
+
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ==================================================
+   RESPONSIVE
+   ================================================== */
+
+@media (max-width: 768px) {
+  .productOverview h3 {
+    font-size: 16px;
+  }
+
+  .overviewLine {
+    height: 3px;
+    margin: 10px 0 12px;
+  }
+
+  .productOverview p {
+    font-size: 14px;
+    line-height: 1.6;
+
+    /* En móvil suele verse mejor sin justificar */
+    text-align: left;
+  }
+}
+
+/* ==================================================
+   ANIMACIÓN DEL HEADER
+   ================================================== */
+
+.catalogHeaderAnimation {
+  animation: catalogHeaderEnter 0.38s ease both;
+}
+
+@keyframes catalogHeaderEnter {
+  from {
+    opacity: 0;
+    transform: translateX(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }

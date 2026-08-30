@@ -1,319 +1,548 @@
 /* ==================================================
+   HOME
+   ================================================== */
+
+.homePage {
+  width: 100%;
+  overflow-x: hidden;
+  background: var(--color-surface);
+}
+
+/* ==================================================
+   LANDING SUPERIOR
+   ================================================== */
+
+.landingShell {
+  width: 100%;
+  background: #121513;
+  color: #ffffff;
+}
+
+/* ==================================================
    HERO
    ================================================== */
 
-.hero {
-  position: relative;
-  overflow: hidden;
-
-  /*
-    El navbar mide 80px.
-    El Hero ocupa todo el resto de la pantalla.
-  */
-  min-height: calc(100svh - 80px);
-
-  padding: 56px 32px;
-
-  display: flex;
-  align-items: center;
-
-  /*
-    Degradado principal amarillo.
-  */
-  background:
-    linear-gradient(
-      110deg,
-      #c99500 0%,
-      #e2ae00 25%,
-      #f2c500 55%,
-      #ffd700 78%,
-      #ffe23d 100%
-    );
-
-  isolation: isolate;
-}
-
-/* ==================================================
-   FRANJAS HORIZONTALES INFERIORES
-   ================================================== */
-
-.hero::before {
-  content: "";
-
-  position: absolute;
-
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  height: 28%;
-
-  background:
-    linear-gradient(
-      to bottom,
-
-      rgba(126, 88, 0, 0.08) 0%,
-      rgba(126, 88, 0, 0.08) 28%,
-
-      rgba(255, 255, 255, 0.07) 28%,
-      rgba(255, 255, 255, 0.07) 54%,
-
-      rgba(126, 88, 0, 0.1) 54%,
-      rgba(126, 88, 0, 0.1) 76%,
-
-      rgba(255, 255, 255, 0.05) 76%,
-      rgba(255, 255, 255, 0.05) 100%
-    );
-
-  z-index: -1;
-
-  pointer-events: none;
-}
-
-/* ==================================================
-   LÍNEAS DIAGONALES INFERIORES
-   ================================================== */
-
-.hero::after {
-  content: "";
-
-  position: absolute;
-
-  right: -4%;
-  bottom: 0;
-
-  width: 55%;
-  height: 18%;
-
-  background:
-    repeating-linear-gradient(
-      135deg,
-
-      rgba(112, 93, 0, 0.13) 0,
-      rgba(112, 93, 0, 0.13) 16px,
-
-      transparent 16px,
-      transparent 34px
-    );
-
-  clip-path: polygon(
-    25% 0,
-    100% 0,
-    100% 100%,
-    0 100%
-  );
-
-  z-index: -1;
-
-  pointer-events: none;
-}
-
-/* ==================================================
-   CONTENIDO DEL HERO
-   ================================================== */
-
-.heroContent {
-  position: relative;
-
-  z-index: 1;
-
+.landingHero {
   width: 100%;
+  background: #151817;
+}
 
+.landingHeroInner {
+  width: 100%;
   max-width: var(--container-max);
-
+  height: calc(90svh - 140px);
   margin: 0 auto;
-
   display: grid;
-
-  grid-template-columns: 0.8fr 1.2fr;
-
-  align-items: center;
-
-  gap: 56px;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  overflow: hidden;
 }
 
-/* ===============================
-   TEXTO HERO
-   =============================== */
+.landingHeroCopy {
+  min-width: 0;
+  padding: 54px 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #151817;
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+}
 
-.heroText h1 {
-  margin-bottom: 18px;
-
-  color: var(--color-deep-black);
-
-  font-size: 48px;
-
+.landingEyebrow {
+  position: relative;
+  width: fit-content;
+  margin-bottom: 15px;
+  padding-left: 25px;
+  color: var(--color-primary-container);
+  font-size: 9px;
   font-weight: 800;
-
-  line-height: 1.1;
+  line-height: 1;
+  letter-spacing: 0.13em;
 }
 
-.heroText p {
-  max-width: 500px;
+.landingEyebrow::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 17px;
+  height: 2px;
+  background: var(--color-primary-container);
+  transform: translateY(-50%);
+}
 
-  color: var(--color-deep-black);
+.landingHeroCopy h1 {
+  max-width: 560px;
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(43px, 4vw, 64px);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
 
-  font-size: 17px;
+.landingHeroCopy h1 span {
+  display: block;
+  color: var(--color-primary-container);
+}
 
+.landingHeroCopy p {
+  max-width: 510px;
+  margin: 22px 0 0;
+  color: #d4d5d3;
+  font-size: 14px;
   line-height: 1.6;
 }
 
-/* ===============================
-   IMAGEN / PLACEHOLDER HERO
-   =============================== */
-
-.heroImage {
-  min-height: 360px;
-
-  display: flex;
-
+.landingCta {
+  width: fit-content;
+  margin-top: 24px;
+  padding: 12px 16px;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-
-  background: #252525;
-}
-
-.imagePlaceholder {
-  width: 85%;
-
-  padding: 100px 20px;
-
-  color: var(--color-primary-container);
-
-  text-align: center;
-
-  font-size: 42px;
-
-  font-weight: 800;
-
-  border: 2px solid var(--color-primary-container);
-}
-
-/* ==================================================
-   ESTADÍSTICAS
-   ================================================== */
-
-.stats {
-  display: grid;
-
-  grid-template-columns: repeat(2, 1fr);
-
-  gap: 24px;
-
-  max-width: 520px;
-
-  margin-top: 32px;
-
-  padding-top: 24px;
-
-  border-top: 1px solid rgba(27, 28, 28, 0.35);
-}
-
-.stats span {
-  display: block;
-
-  margin-bottom: 4px;
-
-  color: var(--color-primary);
-
-  font-size: 11px;
-
-  font-weight: 800;
-
-  letter-spacing: 0.08em;
-}
-
-.stats strong {
-  display: block;
-
+  gap: 18px;
+  background: var(--color-primary-container);
   color: var(--color-deep-black);
-
-  font-size: 20px;
-}
-
-/* ==================================================
-   BOTÓN LEARN MORE
-   ================================================== */
-
-.learnMore {
-  margin-top: 28px;
-
-  padding: 14px 30px;
-
-  background: var(--color-deep-black);
-
-  color: white;
-
-  border: 0;
-
-  border-radius: var(--radius-default);
-
-  font-weight: 700;
-
-  cursor: pointer;
-
+  text-decoration: none;
+  font-size: 9px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.08em;
   transition:
-    background 0.2s ease,
-    transform 0.2s ease;
+    transform 0.2s ease,
+    background 0.2s ease;
 }
 
-.learnMore:hover {
-  background: #000;
+.landingCta svg {
+  width: 15px;
+  height: 15px;
+  stroke-width: 2;
+}
 
+.landingCta:hover {
+  background: #ffe55a;
   transform: translateY(-2px);
 }
 
 /* ==================================================
+   HERO IMAGE
+   ================================================== */
+
+.landingHeroMedia {
+  position: relative;
+  min-width: 0;
+  height: 440px;
+  overflow: hidden;
+  background: #252a27;
+}
+
+.landingHeroImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.landingHeroOverlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(21, 24, 23, 0.52) 0%, rgba(21, 24, 23, 0.08) 25%, transparent 48%),
+    linear-gradient(0deg, rgba(8, 10, 9, 0.12), transparent 45%);
+  pointer-events: none;
+}
+
+/* ==================================================
+   METRICS
+   ================================================== */
+
+.landingMetrics {
+  width: 100%;
+  background: #1b1f1d;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.landingMetricsInner {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.landingMetric {
+  min-height: 96px;
+  padding: 20px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.landingMetric:first-child {
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.landingMetric strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--color-primary-container);
+  font-size: 31px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.landingMetric span {
+  color: #c9cbc8;
+  font-size: 8px;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: 0.09em;
+}
+
+/* ==================================================
+   WHO WE ARE
+   ================================================== */
+
+.landingWho {
+  width: 100%;
+  background: #101311;
+}
+
+.landingWhoInner {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 54px 32px 62px;
+}
+
+.landingSectionTitle {
+  margin-bottom: 24px;
+}
+
+.landingSectionTitle h2 {
+  margin: 0 0 9px;
+  color: #ffffff;
+  font-size: 27px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.landingSectionTitle > span {
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: var(--color-primary-container);
+}
+
+.landingWhoGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.38fr) minmax(300px, 0.82fr);
+  gap: 12px;
+}
+
+.landingWhoCopy {
+  min-height: 280px;
+  padding: 34px 38px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #1b1f1d;
+  border: 1px solid rgba(255, 215, 0, 0.34);
+}
+
+.landingCardEyebrow {
+  margin-bottom: 11px;
+  color: var(--color-primary-container);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.landingWhoCopy h3 {
+  max-width: 520px;
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(23px, 2vw, 31px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+.landingWhoCopy p {
+  max-width: 650px;
+  margin: 16px 0 0;
+  color: #d0d2cf;
+  font-size: 13px;
+  line-height: 1.58;
+}
+
+.landingOutlineCta {
+  width: fit-content;
+  margin-top: 20px;
+  padding: 9px 14px;
+  border: 1px solid var(--color-primary-container);
+  color: var(--color-primary-container);
+  text-decoration: none;
+  font-size: 8px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.landingOutlineCta:hover {
+  background: var(--color-primary-container);
+  color: var(--color-deep-black);
+}
+
+/* ==================================================
+   WHO MEDIA
+   ================================================== */
+
+.landingWhoMedia {
+  min-width: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 12px;
+}
+
+.landingWhoImageCard {
+  position: relative;
+  min-height: 198px;
+  overflow: hidden;
+  background: #262a28;
+  border: 1px solid rgba(255, 215, 0, 0.22);
+}
+
+.landingWhoImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 198px;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(0.78) contrast(1.05) brightness(0.74);
+}
+
+.landingWhoImageShade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(8, 10, 9, 0.68), transparent 58%);
+  pointer-events: none;
+}
+
+.landingMediaLabel {
+  position: absolute;
+  z-index: 2;
+  left: 16px;
+  bottom: 14px;
+  padding-left: 16px;
+  color: #f0f1ef;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+}
+
+.landingMediaLabel::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 9px;
+  height: 2px;
+  background: var(--color-primary-container);
+  transform: translateY(-50%);
+}
+
+.landingCapacityCard {
+  min-height: 70px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #1b1f1d;
+  border: 1px solid rgba(255, 215, 0, 0.22);
+}
+
+.landingCapacityCard span {
+  display: block;
+  margin-bottom: 3px;
+  color: #aeb1ad;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.landingCapacityCard strong {
+  display: block;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.landingCapacityIcon {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--color-primary-container);
+  color: var(--color-primary-container);
+}
+
+.landingCapacityIcon svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 1.8;
+}
+
+/* ==================================================
+   RESPONSIVE — LANDING SUPERIOR
+   ================================================== */
+
+@media (max-width: 1024px) {
+  .landingHeroInner {
+    height: 400px;
+  }
+
+  .landingHeroCopy {
+    padding: 44px 36px;
+  }
+
+  .landingHeroMedia {
+    height: 400px;
+  }
+
+  .landingMetric {
+    padding: 18px 22px;
+  }
+
+  .landingWhoGrid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  }
+
+  .landingWhoCopy {
+    padding: 30px 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .landingHeroInner {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .landingHeroCopy {
+    min-height: 390px;
+    padding: 48px 24px;
+    border-right: 0;
+  }
+
+  .landingHeroCopy h1 {
+    font-size: clamp(42px, 11vw, 56px);
+  }
+
+  .landingHeroMedia {
+    height: 280px;
+  }
+
+  .landingMetricsInner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .landingMetric,
+  .landingMetric:first-child {
+    min-height: 92px;
+    border-left: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .landingMetric:nth-child(even) {
+    border-right: 0;
+  }
+
+  .landingWhoInner {
+    padding: 48px 20px 56px;
+  }
+
+  .landingWhoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .landingWhoCopy {
+    min-height: auto;
+    padding: 30px 24px;
+  }
+
+  .landingWhoImageCard,
+  .landingWhoImage {
+    min-height: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .landingHeroCopy {
+    min-height: 370px;
+  }
+
+  .landingCta {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .landingHeroMedia {
+    height: 235px;
+  }
+
+  .landingMetric {
+    padding: 17px 15px;
+  }
+
+  .landingMetric strong {
+    font-size: 28px;
+  }
+}
+
+/* ==================================================
    OUR EXPERTISE
+   Se conserva el diseño claro actual.
    ================================================== */
 
 .expertise {
   max-width: var(--container-max);
-
   margin: 0 auto;
-
   padding: 80px 32px;
 }
 
 .expertise h2 {
   margin-bottom: 28px;
-
   padding-bottom: 16px;
-
   border-bottom: 1px solid var(--color-deep-black);
-
   font-size: 32px;
-
   font-weight: 700;
 }
 
-/* ===============================
-   GRID
-   =============================== */
-
 .grid {
   display: grid;
-
   grid-template-columns: repeat(3, 1fr);
-
   gap: 28px;
 }
 
-/* ===============================
-   TARJETAS
-   =============================== */
-
 .card {
   min-height: 190px;
-
   padding: 24px;
-
   background: var(--color-surface-container-lowest);
-
   border: 1px solid var(--color-outline-variant);
-
   border-radius: var(--radius-default);
-
   transition:
     border-color 0.2s ease,
     transform 0.2s ease;
@@ -321,251 +550,106 @@
 
 .card:hover {
   border-color: var(--color-primary-container);
-
   transform: translateY(-3px);
 }
 
-/* ===============================
-   ICONO PLACEHOLDER
-   =============================== */
-
-.iconPlaceholder {
+.expertiseIcon {
   width: 44px;
-
   height: 44px;
-
-  display: grid;
-
-  place-items: center;
-
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   margin-bottom: 20px;
-
-  background: var(--color-surface-container-high);
-
   color: var(--color-deep-black);
+}
+
+.expertiseIcon svg {
+  width: 30px;
+  height: 30px;
+  stroke-width: 1.7;
 }
 
 .card h3 {
   margin-bottom: 10px;
-
   font-size: 17px;
-
   line-height: 1.3;
 }
 
 .card p {
   color: var(--color-secondary);
-
   font-size: 14px;
-
   line-height: 1.5;
 }
 
 /* ==================================================
    GLOBAL OPERATIONS
+   Se conserva el diseño claro actual.
    ================================================== */
 
 .operations {
   max-width: var(--container-max);
-
   margin: 0 auto 80px;
-
   padding: 0;
-
   display: grid;
-
   grid-template-columns: 1fr 1.7fr;
-
   border: 1px solid var(--color-outline-variant);
-
   overflow: hidden;
 }
 
-/* ===============================
-   TEXTO OPERATIONS
-   =============================== */
-
 .operationsText {
   padding: 48px 64px;
-
   background: var(--color-surface-container-low);
-
   display: flex;
-
   flex-direction: column;
-
   justify-content: center;
 }
 
 .operationsText h2 {
   margin: 0 0 20px;
-
   font-size: 30px;
-
   line-height: 1.2;
 }
 
 .operationsText p {
   margin: 0 0 24px;
-
   color: var(--color-secondary);
-
   line-height: 1.5;
 }
 
 .operationsText ul {
   margin: 0;
-
   padding-left: 20px;
-
   color: var(--color-secondary);
-
   line-height: 2;
 }
 
-/* ==================================================
-   MAPA
-   ================================================== */
-
 .mapBox {
   width: 100%;
-
   height: 100%;
-
   min-height: 340px;
-
   overflow: hidden;
-
   display: flex;
-
   align-items: stretch;
-
   justify-content: stretch;
-
   background: #e5e5e5;
 }
 
 .mapImage {
   display: block;
-
   width: 100%;
-
   height: 100%;
-
   min-height: 340px;
-
   object-fit: cover;
-
   object-position: center;
 }
 
-/* ==================================================
-   TABLET
-   ================================================== */
-
 @media (max-width: 1024px) {
-  .hero {
-    padding: 48px 28px;
-  }
-
-  .heroContent {
-    gap: 36px;
-  }
-
-  .heroText h1 {
-    font-size: 42px;
-  }
-
-  .heroText p {
-    font-size: 16px;
-  }
-
-  .heroImage {
-    min-height: 320px;
-  }
-
-  .imagePlaceholder {
-    padding: 85px 20px;
-
-    font-size: 36px;
-  }
-
   .operationsText {
     padding: 42px 44px;
   }
 }
 
-/* ==================================================
-   MÓVIL
-   ================================================== */
-
 @media (max-width: 768px) {
-  /* ===============================
-     HERO
-     =============================== */
-
-  .hero {
-    /*
-      Navbar móvil = 70px.
-    */
-    min-height: calc(100svh - 70px);
-
-    padding: 48px 20px;
-
-    align-items: flex-start;
-  }
-
-  .heroContent {
-    grid-template-columns: 1fr;
-
-    gap: 36px;
-  }
-
-  .heroText h1 {
-    font-size: 38px;
-  }
-
-  .heroText p {
-    font-size: 16px;
-  }
-
-  .heroImage {
-    min-height: 280px;
-  }
-
-  .imagePlaceholder {
-    width: 90%;
-
-    padding: 72px 18px;
-
-    font-size: 32px;
-  }
-
-  /* Reducimos las decoraciones inferiores */
-  .hero::before {
-    height: 18%;
-  }
-
-  .hero::after {
-    width: 80%;
-
-    height: 12%;
-  }
-
-  /* ===============================
-     STATS
-     =============================== */
-
-  .stats {
-    gap: 20px;
-
-    margin-top: 28px;
-  }
-
-  /* ===============================
-     EXPERTISE
-     =============================== */
-
   .expertise {
     padding: 56px 20px;
   }
@@ -578,15 +662,9 @@
     grid-template-columns: 1fr;
   }
 
-  /* ===============================
-     GLOBAL OPERATIONS
-     =============================== */
-
   .operations {
     grid-template-columns: 1fr;
-
     margin: 0 20px 56px;
-
     padding: 0;
   }
 
@@ -594,10 +672,7 @@
     padding: 36px 28px;
   }
 
-  .mapBox {
-    min-height: 280px;
-  }
-
+  .mapBox,
   .mapImage {
     min-height: 280px;
   }

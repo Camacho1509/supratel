@@ -46,8 +46,15 @@ export default function Navbar() {
           </Link>
 
           <Link
-            href="/pagina2"
-            className={pathname === "/pagina2" ? styles.activeLink : ""}
+            href="/Overview"
+            className={pathname === "/Overview" ? styles.activeLink : ""}
+          >
+            Overview
+          </Link>
+
+           <Link
+            href="/Catalog"
+            className={pathname === "/Catalog" ? styles.activeLink : ""}
           >
             Catalog
           </Link>
@@ -60,7 +67,7 @@ export default function Navbar() {
           <div className={styles.contactInfo}>
             {/* WHATSAPP */}
             <a
-              href="https://wa.me/525543241575"
+              href="https://wa.me/33651437980"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.contactLink}
@@ -77,7 +84,7 @@ export default function Navbar() {
                 />
               </svg>
 
-              <span>(52) 55 4324 1575</span>
+              <span>(33) 6514 37980</span>
             </a>
 
             {/* EMAIL */}

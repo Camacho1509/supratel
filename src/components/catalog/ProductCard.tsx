@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { CatalogProduct } from "@/data/catalogProducts";
-import styles from "@/app/catalogo/catalogo.module.css";
+import styles from "@/app/Catalog/catalogo.module.css";
 
 interface ProductCardProps {
   product: CatalogProduct;
@@ -34,13 +34,6 @@ export default function ProductCard({
             SKU: {product.sku}
           </p>
         )}
-
-        <button
-          type="button"
-          className={styles.specButton}
-        >
-          VIEW SPECS
-        </button>
       </div>
     </article>
   );
