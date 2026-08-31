@@ -207,7 +207,7 @@ export default function Home() {
 
         <div className={styles.mapBox}>
           <Image
-            src="/Map.png"
+            src="/Map.webp"
             alt="Global Operations Map"
             width={1600}
             height={900}

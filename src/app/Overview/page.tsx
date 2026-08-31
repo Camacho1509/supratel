@@ -21,7 +21,7 @@ export default function CatalogoPage() {
           <section className={styles.categorySection}>
             <div className={styles.categoryImage}>
               <Image
-                src="/img/Catalogo/Electricista.webp"
+                src="/img/Catalogo/Electricista 2.webp"
                 alt="Outside plant telecommunications installation"
                 fill
                 sizes="(max-width: 768px) 100vw, 38vw"
@@ -55,7 +55,7 @@ export default function CatalogoPage() {
 
             <div className={styles.categoryImage}>
               <Image
-                src="/img/Catalogo/FibraO.webp"
+                src="/img/Catalogo/Fibra O 2.webp"
                 alt="Inside plant fiber optic equipment"
                 fill
                 sizes="(max-width: 768px) 100vw, 38vw"
