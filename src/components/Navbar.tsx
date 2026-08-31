@@ -4,9 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "@/css/Navbar.module.css";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { translations } from "@/i18n/translations";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const { language, toggleLanguage } = useLanguage();
+  const t = translations[language];
 
   return (
     <header className={styles.navbar}>
@@ -42,21 +46,21 @@ export default function Navbar() {
             href="/"
             className={pathname === "/" ? styles.activeLink : ""}
           >
-            Home
+            {t.nav.home}
           </Link>
 
           <Link
             href="/Overview"
             className={pathname === "/Overview" ? styles.activeLink : ""}
           >
-            Overview
+            {t.nav.overview}
           </Link>
 
            <Link
             href="/Catalog"
             className={pathname === "/Catalog" ? styles.activeLink : ""}
           >
-            Catalog
+            {t.nav.catalog}
           </Link>
         </nav>
 
@@ -71,7 +75,7 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               className={styles.contactLink}
-              aria-label="Contact SUPRATEL by WhatsApp"
+              aria-label={t.nav.whatsappAria}
             >
               <svg
                 viewBox="0 0 24 24"
@@ -91,7 +95,7 @@ export default function Navbar() {
             <a
               href="mailto:contacto@eepsa.com.mx"
               className={styles.contactLink}
-              aria-label="Send an email to SUPRATEL"
+              aria-label={t.nav.emailAria}
             >
               <svg
                 viewBox="0 0 24 24"
@@ -110,12 +114,13 @@ export default function Navbar() {
 
           {/* =====================================
               IDIOMA
-              Por ahora solo visual.
           ===================================== */}
           <button
             type="button"
             className={styles.language}
-            aria-label="Language: English"
+            onClick={toggleLanguage}
+            aria-label={t.nav.switchLanguageAria}
+            title={language === "en" ? "Español" : "English"}
           >
             <svg
               viewBox="0 0 24 24"
@@ -139,7 +144,7 @@ export default function Navbar() {
               />
             </svg>
 
-            <span>EN</span>
+            <span>{language.toUpperCase()}</span>
           </button>
         </div>
       </div>

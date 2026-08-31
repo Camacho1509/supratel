@@ -10,8 +10,17 @@ import { catalogProducts } from "@/data/catalogProducts";
 
 import styles from "./catalogo.module.css";
 
+import { useLanguage } from "@/i18n/LanguageContext";
+import {
+  getSectionName,
+  getSectionOverview,
+  translations,
+} from "@/i18n/translations";
+
 export default function CatalogPage() {
   const [activeCategory, setActiveCategory] = useState("all");
+  const { language } = useLanguage();
+  const t = translations[language];
 
   const visibleSections =
     activeCategory === "all"
@@ -47,24 +56,34 @@ export default function CatalogPage() {
         >
           {activeSection ? (
             <>
-              <h1>{activeSection.name.toUpperCase()}</h1>
+              <h1>
+                {getSectionName(
+                  activeSection.id,
+                  activeSection.name,
+                  language,
+                ).toUpperCase()}
+              </h1>
 
               <div className={styles.productOverview}>
-                <h3>PRODUCT OVERVIEW</h3>
+                <h3>{t.catalog.productOverview}</h3>
 
                 <div className={styles.overviewLine} />
 
-                <p>{activeSection.overview}</p>
+                <p>
+                  {getSectionOverview(
+                    activeSection.id,
+                    activeSection.overview,
+                    language,
+                  )}
+                </p>
               </div>
             </>
           ) : (
             <>
-              <h1>GLOBAL CATALOG</h1>
+              <h1>{t.catalog.globalCatalog}</h1>
 
               <p className={styles.globalDescription}>
-                High-performance industrial networking components and
-                infrastructure hardware. All items currently in stock unless
-                otherwise noted.
+                {t.catalog.globalDescription}
               </p>
             </>
           )}
@@ -97,7 +116,13 @@ export default function CatalogPage() {
                     </div>
 
                     <div>
-                      <h2>{section.name}</h2>
+                      <h2>
+                        {getSectionName(
+                          section.id,
+                          section.name,
+                          language,
+                        )}
+                      </h2>
                       <span />
                     </div>
                   </div>
@@ -114,9 +139,7 @@ export default function CatalogPage() {
                   </div>
                 ) : (
                   <div className={styles.emptyCategory}>
-                    <p>
-                      Products for this category will be added here.
-                    </p>
+                    <p>{t.catalog.emptyCategory}</p>
                   </div>
                 )}
               </section>

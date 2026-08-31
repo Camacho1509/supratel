@@ -1,11 +1,18 @@
+"use client";
+
 import Image from "next/image";
 import styles from "@/css/Footer.module.css";
 
+import { useLanguage } from "@/i18n/LanguageContext";
+import { translations } from "@/i18n/translations";
+
 export default function Footer() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        {/* MARCA */}
         <div className={styles.brand}>
           <Image
             src="/Logo.svg"
@@ -24,13 +31,11 @@ export default function Footer() {
           />
         </div>
 
-        {/* COPYRIGHT */}
         <p className={styles.copy}>
-          © 2026 SUPRATEL Infrastructure Global Operations.
+          {t.footer.line1}
           <br />
-          All rights reserved.
+          {t.footer.line2}
         </p>
-
       </div>
     </footer>
   );

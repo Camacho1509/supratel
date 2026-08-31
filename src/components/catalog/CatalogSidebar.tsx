@@ -5,6 +5,12 @@ import { useState } from "react";
 import { catalogSections } from "@/data/catalogSections";
 import styles from "@/app/Catalog/catalogo.module.css";
 
+import { useLanguage } from "@/i18n/LanguageContext";
+import {
+  getSectionName,
+  translations,
+} from "@/i18n/translations";
+
 import {
   Box,
   Cable,
@@ -36,6 +42,8 @@ export default function CatalogSidebar({
   onCategoryChange,
 }: CatalogSidebarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const { language } = useLanguage();
+  const t = translations[language];
 
   const handleSelect = (category: string) => {
     onCategoryChange(category);
@@ -50,8 +58,8 @@ export default function CatalogSidebar({
         <div className={styles.sidebarHeaderText}>
           <span className={styles.sidebarAccent} />
 
-          <h2>Product Catalog</h2>
-          <p>Industrial Solutions</p>
+          <h2>{t.catalog.sidebarTitle}</h2>
+          <p>{t.catalog.sidebarSubtitle}</p>
         </div>
 
         <button
@@ -62,8 +70,8 @@ export default function CatalogSidebar({
           aria-controls="catalog-filter-menu"
           aria-label={
             isOpen
-              ? "Close catalog filters"
-              : "Open catalog filters"
+              ? t.catalog.closeFilters
+              : t.catalog.openFilters
           }
         >
           {isOpen ? (
@@ -93,7 +101,7 @@ export default function CatalogSidebar({
             <Grid2X2 aria-hidden="true" />
           </span>
 
-          <span>ALL PRODUCTS</span>
+          <span>{t.catalog.allProducts}</span>
         </button>
 
         {catalogSections.map((section) => {
@@ -119,7 +127,13 @@ export default function CatalogSidebar({
                 <Icon aria-hidden="true" />
               </span>
 
-              <span>{section.name}</span>
+              <span>
+                {getSectionName(
+                  section.id,
+                  section.name,
+                  language,
+                )}
+              </span>
             </button>
           );
         })}

@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { expertise } from "@/data/expertise";
@@ -13,6 +15,12 @@ import {
   ArrowRight,
 } from "lucide-react";
 
+import { useLanguage } from "@/i18n/LanguageContext";
+import {
+  expertiseSpanish,
+  translations,
+} from "@/i18n/translations";
+
 const expertiseIcons = {
   cable: Cable,
   network: Network,
@@ -23,33 +31,28 @@ const expertiseIcons = {
 };
 
 export default function Home() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <main className={styles.homePage}>
-      {/* ==================================================
-          LANDING SUPERIOR
-          ================================================== */}
       <div className={styles.landingShell}>
-        {/* HERO */}
         <section className={styles.landingHero}>
           <div className={styles.landingHeroInner}>
             <div className={styles.landingHeroCopy}>
               <span className={styles.landingEyebrow}>
-                GLOBAL INFRASTRUCTURE
+                {t.home.hero.eyebrow}
               </span>
 
               <h1>
-                Global Leader in
-                <span>Fiber Optics</span>
+                {t.home.hero.title}
+                <span>{t.home.hero.accent}</span>
               </h1>
 
-              <p>
-                Designed in Belgium, SUPRATEL® delivers comprehensive fiber
-                optic infrastructure solutions for network operators, ISPs,
-                and enterprises worldwide.
-              </p>
+              <p>{t.home.hero.description}</p>
 
               <Link href="/Catalog" className={styles.landingCta}>
-                <span>EXPLORE SOLUTIONS</span>
+                <span>{t.home.hero.cta}</span>
                 <ArrowRight aria-hidden="true" />
               </Link>
             </div>
@@ -57,7 +60,7 @@ export default function Home() {
             <div className={styles.landingHeroMedia}>
               <Image
                 src="/img/Catalogo/FibraO.webp"
-                alt="Fiber optic infrastructure"
+                alt={t.home.hero.imageAlt}
                 width={1400}
                 height={900}
                 priority
@@ -68,7 +71,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* MÉTRICAS */}
         <section
           className={styles.landingMetrics}
           aria-label="SUPRATEL key figures"
@@ -76,52 +78,45 @@ export default function Home() {
           <div className={styles.landingMetricsInner}>
             <div className={styles.landingMetric}>
               <strong>220+</strong>
-              <span>PRODUCT REFERENCES</span>
+              <span>{t.home.metrics.productReferences}</span>
             </div>
 
             <div className={styles.landingMetric}>
               <strong>End</strong>
-              <span>END-TO-END COVERAGE</span>
+              <span>{t.home.metrics.endToEnd}</span>
             </div>
 
             <div className={styles.landingMetric}>
               <strong>BE</strong>
-              <span>DESIGNED IN BELGIUM</span>
+              <span>{t.home.metrics.designedBelgium}</span>
             </div>
 
             <div className={styles.landingMetric}>
               <strong>10+</strong>
-              <span>STRATEGIC PARTNERS</span>
+              <span>{t.home.metrics.strategicPartners}</span>
             </div>
           </div>
         </section>
 
-        {/* WHO WE ARE */}
         <section className={styles.landingWho}>
           <div className={styles.landingWhoInner}>
             <div className={styles.landingSectionTitle}>
-              <h2>WHO WE ARE</h2>
+              <h2>{t.home.who.title}</h2>
               <span />
             </div>
 
             <div className={styles.landingWhoGrid}>
               <article className={styles.landingWhoCopy}>
                 <span className={styles.landingCardEyebrow}>
-                  THE BLUEPRINT
+                  {t.home.who.eyebrow}
                 </span>
 
-                <h3>Designed in Belgium. Deployed Globally.</h3>
+                <h3>{t.home.who.heading}</h3>
 
-                <p>
-                  SUPRATEL® is a global telecommunications leader specializing
-                  in comprehensive fiber optic infrastructure solutions. We
-                  combine rigorous international standards with local market
-                  flexibility to serve network operators, ISPs, and
-                  enterprises.
-                </p>
+                <p>{t.home.who.description}</p>
 
                 <Link href="/Overview" className={styles.landingOutlineCta}>
-                  LEARN MORE
+                  {t.home.who.cta}
                 </Link>
               </article>
 
@@ -129,7 +124,7 @@ export default function Home() {
                 <div className={styles.landingWhoImageCard}>
                   <Image
                     src="/img/Catalogo/Electricista.webp"
-                    alt="Telecommunications infrastructure installation"
+                    alt={t.home.who.imageAlt}
                     width={1200}
                     height={800}
                     className={styles.landingWhoImage}
@@ -137,14 +132,14 @@ export default function Home() {
 
                   <div className={styles.landingWhoImageShade} />
                   <span className={styles.landingMediaLabel}>
-                    HIGH-PERFORMANCE
+                    {t.home.who.mediaLabel}
                   </span>
                 </div>
 
                 <div className={styles.landingCapacityCard}>
                   <div>
-                    <span>NETWORK CAPACITY</span>
-                    <strong>Unlimited</strong>
+                    <span>{t.home.who.capacityLabel}</span>
+                    <strong>{t.home.who.capacityValue}</strong>
                   </div>
 
                   <div className={styles.landingCapacityIcon} aria-hidden="true">
@@ -157,16 +152,18 @@ export default function Home() {
         </section>
       </div>
 
-      {/* ==================================================
-          OUR EXPERTISE — SE CONSERVA
-          ================================================== */}
       <section className={styles.expertise}>
-        <h2>OUR EXPERTISE</h2>
+        <h2>{t.home.expertiseTitle}</h2>
 
         <div className={styles.grid}>
           {expertise.map((item) => {
             const Icon =
               expertiseIcons[item.icon as keyof typeof expertiseIcons];
+
+            const translated =
+              language === "es"
+                ? expertiseSpanish[item.icon]
+                : undefined;
 
             return (
               <article className={styles.card} key={item.title}>
@@ -174,32 +171,26 @@ export default function Home() {
                   <Icon aria-hidden="true" />
                 </div>
 
-                <h3>{item.title}</h3>
-                <p>{item.desc}</p>
+                <h3>{translated?.title ?? item.title}</h3>
+                <p>{translated?.desc ?? item.desc}</p>
               </article>
             );
           })}
         </div>
       </section>
 
-      {/* ==================================================
-          GLOBAL OPERATIONS — SE CONSERVA
-          ================================================== */}
       <section className={styles.operations}>
         <div className={styles.operationsText}>
-          <h2>Global Operations & Logistics Centers</h2>
+          <h2>{t.home.operations.title}</h2>
 
-          <p>
-            Strategic hubs ensuring rapid deployment across 4 continents and
-            12+ countries.
-          </p>
+          <p>{t.home.operations.description}</p>
 
           <ul>
-            <li>Headquarters: Belgium</li>
+            <li>{t.home.operations.headquarters}</li>
 
             <li style={{ color: "#FFD600" }}>
               <span style={{ color: "var(--color-secondary)" }}>
-                5 Regional Logistics Hubs
+                {t.home.operations.hubs}
               </span>
             </li>
           </ul>
@@ -208,7 +199,7 @@ export default function Home() {
         <div className={styles.mapBox}>
           <Image
             src="/Map.webp"
-            alt="Global Operations Map"
+            alt={t.home.operations.mapAlt}
             width={1600}
             height={900}
             className={styles.mapImage}

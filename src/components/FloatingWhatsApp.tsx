@@ -1,13 +1,20 @@
+"use client";
+
 import styles from "@/css/FloatingWhatsApp.module.css";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { translations } from "@/i18n/translations";
 
 export default function FloatingWhatsApp() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <a
       href="https://wa.me/33651437980"
       target="_blank"
       rel="noopener noreferrer"
       className={styles.whatsappButton}
-      aria-label="Contact SUPRATEL by WhatsApp"
+      aria-label={t.floatingWhatsAppAria}
       title="WhatsApp"
     >
       <svg

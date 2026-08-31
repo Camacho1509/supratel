@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import { LanguageProvider } from "@/i18n/LanguageContext";
 
 export const metadata: Metadata = {
   title: {
@@ -18,12 +19,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">
+    <html lang="en">
       <body>
-        <Navbar />
-        {children}
-        <Footer />
-        <FloatingWhatsApp />
+        <LanguageProvider>
+          <Navbar />
+          {children}
+          <Footer />
+          <FloatingWhatsApp />
+        </LanguageProvider>
       </body>
     </html>
   );
