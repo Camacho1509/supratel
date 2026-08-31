@@ -33,6 +33,14 @@
   justify-content: flex-start;
 }
 
+/* Contenedor del texto del header.
+   Se utiliza principalmente en móvil para
+   separar el texto del botón hamburguesa. */
+
+.sidebarHeaderText {
+  min-width: 0;
+}
+
 .sidebarAccent {
   width: 40px;
   height: 2px;
@@ -60,6 +68,50 @@
   letter-spacing: 0.08em;
 
   color: var(--color-secondary);
+}
+
+/* ==================================================
+   BOTÓN HAMBURGUESA
+   Oculto en escritorio.
+   ================================================== */
+
+.sidebarMenuButton {
+  display: none;
+
+  width: 42px;
+  height: 42px;
+
+  flex: 0 0 auto;
+
+  padding: 0;
+
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+
+  color: var(--color-deep-black);
+
+  border: 1px solid
+    var(--color-deep-black);
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.sidebarMenuButton:hover {
+  background: var(--color-deep-black);
+  color: #ffffff;
+}
+
+.sidebarMenuButton svg {
+  width: 21px;
+  height: 21px;
+
+  stroke-width: 1.8;
 }
 
 /* ===============================
@@ -470,8 +522,16 @@
     display: block;
   }
 
+  /* =========================================
+     SIDEBAR / FILTRO
+     ========================================= */
+
   .sidebar {
+    position: relative;
+
     min-height: auto;
+
+    background: #f1efed;
 
     border-right: 0;
 
@@ -480,42 +540,154 @@
       var(--color-deep-black);
   }
 
+  /* =========================================
+     HEADER DEL FILTRO
+     ========================================= */
+
   .sidebarHeader {
     min-height: auto;
 
-    padding:
-      28px
-      20px
-      18px;
-  }
+    padding: 22px 20px;
 
-  .sidebarNav {
-    padding: 0 16px 18px;
+    display: flex;
 
     flex-direction: row;
 
-    overflow-x: auto;
+    align-items: center;
 
-    gap: 8px;
+    justify-content: space-between;
+
+    gap: 20px;
   }
 
-  .sidebarItem {
-    width: auto;
+  .sidebarHeaderText {
+    min-width: 0;
 
-    min-width: max-content;
-    min-height: 42px;
+    flex: 1;
+  }
 
-    padding: 10px 14px;
+  .sidebarAccent {
+    width: 40px;
+    height: 2px;
 
-    border:
+    margin-bottom: 16px;
+  }
+
+  .sidebarHeader h2 {
+    margin-bottom: 5px;
+
+    font-size: 17px;
+
+    white-space: nowrap;
+  }
+
+  .sidebarHeader p {
+    font-size: 11px;
+  }
+
+  /* =========================================
+     BOTÓN HAMBURGUESA
+     ========================================= */
+
+  .sidebarMenuButton {
+    display: flex;
+  }
+
+  /* =========================================
+     MENÚ CERRADO
+     ========================================= */
+
+  .sidebarNav {
+    display: none;
+
+    width: 100%;
+
+    padding: 0;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+    gap: 0;
+
+    border-top:
       1px solid
       var(--color-outline-variant);
   }
 
-  .sidebarItem:hover {
-    padding-left: 14px;
+  /* =========================================
+     MENÚ ABIERTO
+     ========================================= */
+
+  .sidebarNavOpen {
+    display: flex;
   }
 
+  /* =========================================
+     OPCIONES DEL FILTRO
+     ========================================= */
+
+  .sidebarItem {
+    width: 100%;
+
+    min-width: 0;
+
+    min-height: 52px;
+
+    padding: 12px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    background: transparent;
+
+    border: 0;
+
+    border-bottom:
+      1px solid
+      var(--color-outline-variant);
+
+    font-size: 10px;
+
+    text-align: left;
+
+    white-space: normal;
+  }
+
+  .sidebarItem:last-child {
+    border-bottom: 0;
+  }
+
+  .sidebarItem:hover {
+    padding-left: 24px;
+
+    background:
+      rgba(255, 215, 0, 0.16);
+  }
+
+  .sidebarItemActive {
+    background:
+      var(--color-primary-container);
+  }
+
+  .sidebarItemActive:hover {
+    background:
+      var(--color-primary-container);
+  }
+
+  .sidebarIcon {
+    width: 22px;
+    height: 22px;
+
+    flex: 0 0 auto;
+  }
+
+  /* =========================================
+     CONTENIDO
+     ========================================= */
 
   .catalogContent {
     padding:
@@ -552,6 +724,69 @@
 }
 
 /* ==================================================
+   MÓVILES MUY PEQUEÑOS
+   ================================================== */
+
+@media (max-width: 480px) {
+  .sidebarHeader {
+    padding:
+      20px
+      16px;
+  }
+
+  .sidebarHeader h2 {
+    font-size: 16px;
+  }
+
+  .sidebarHeader p {
+    font-size: 10px;
+  }
+
+  .sidebarMenuButton {
+    width: 40px;
+    height: 40px;
+  }
+
+  .sidebarMenuButton svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .sidebarItem {
+    min-height: 50px;
+
+    padding:
+      11px
+      16px;
+  }
+
+  .sidebarItem:hover {
+    padding-left: 20px;
+  }
+
+  .catalogContent {
+    padding:
+      34px
+      16px
+      54px;
+  }
+
+  .catalogHeader h1 {
+    font-size: 32px;
+  }
+
+  .categoryHeading h2 {
+    font-size: 20px;
+
+    line-height: 1.15;
+  }
+
+  .productImage {
+    height: 230px;
+  }
+}
+
+/* ==================================================
    TRANSICIÓN ENTRE CATEGORÍAS
    ================================================== */
 
@@ -562,23 +797,27 @@
 @keyframes catalogViewEnter {
   from {
     opacity: 0;
-    transform: translateX(28px);
+
+    transform:
+      translateX(28px);
   }
 
   to {
     opacity: 1;
-    transform: translateX(0);
+
+    transform:
+      translateX(0);
   }
 }
 
 /* Reduce animaciones si el usuario lo solicita
    desde su sistema operativo */
+
 @media (prefers-reduced-motion: reduce) {
   .catalogView {
     animation: none;
   }
 }
-
 
 /* ==================================================
    HEADER DEL CATÁLOGO
@@ -586,18 +825,25 @@
 
 .catalogHeader {
   margin-bottom: 52px;
+
   padding-bottom: 28px;
 
-  border-bottom: 1px solid var(--color-deep-black);
+  border-bottom:
+    1px solid
+    var(--color-deep-black);
 }
 
 .catalogHeader h1 {
   margin: 0 0 24px;
 
-  color: var(--color-deep-black);
+  color:
+    var(--color-deep-black);
 
-  font-size: clamp(36px, 4vw, 52px);
+  font-size:
+    clamp(36px, 4vw, 52px);
+
   font-weight: 800;
+
   line-height: 1;
 
   text-transform: uppercase;
@@ -612,9 +858,11 @@
 
   margin: 0;
 
-  color: var(--color-secondary);
+  color:
+    var(--color-secondary);
 
   font-size: 15px;
+
   line-height: 1.6;
 }
 
@@ -624,6 +872,7 @@
 
 .productOverview {
   width: 100%;
+
   max-width: none;
 }
 
@@ -634,10 +883,13 @@
 .productOverview h3 {
   margin: 0;
 
-  color: var(--color-deep-black);
+  color:
+    var(--color-deep-black);
 
   font-size: 17px;
+
   font-weight: 800;
+
   line-height: 1.2;
 
   text-transform: uppercase;
@@ -649,11 +901,16 @@
 
 .overviewLine {
   width: 100%;
+
   height: 4px;
 
-  margin: 12px 0 14px;
+  margin:
+    12px
+    0
+    14px;
 
-  background: var(--color-primary-container);
+  background:
+    var(--color-primary-container);
 }
 
 /* ===============================
@@ -662,13 +919,16 @@
 
 .productOverview p {
   width: 100%;
+
   max-width: none;
 
   margin: 0;
 
-  color: var(--color-deep-black);
+  color:
+    var(--color-deep-black);
 
   font-size: 15px;
+
   line-height: 1.65;
 
   text-align: justify;
@@ -684,32 +944,63 @@
 
   margin: 0;
 
-  color: var(--color-secondary);
+  color:
+    var(--color-secondary);
 
   font-size: 15px;
+
   line-height: 1.6;
 }
 
 /* ==================================================
-   RESPONSIVE
+   RESPONSIVE PRODUCT OVERVIEW
    ================================================== */
 
 @media (max-width: 768px) {
+  /*
+    Estas reglas aparecen después de las reglas
+    anteriores de .catalogHeader, por eso repetimos
+    aquí el tamaño móvil para que no sea sobrescrito.
+  */
+
+  .catalogHeader {
+    margin-bottom: 40px;
+
+    padding-bottom: 24px;
+  }
+
+  .catalogHeader h1 {
+    margin-bottom: 20px;
+
+    font-size: 34px;
+  }
+
   .productOverview h3 {
     font-size: 16px;
   }
 
   .overviewLine {
     height: 3px;
-    margin: 10px 0 12px;
+
+    margin:
+      10px
+      0
+      12px;
   }
 
   .productOverview p {
     font-size: 14px;
+
     line-height: 1.6;
 
     /* En móvil suele verse mejor sin justificar */
     text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .catalogHeader h1 {
+    font-size: 32px;
   }
 }
 
@@ -718,17 +1009,25 @@
    ================================================== */
 
 .catalogHeaderAnimation {
-  animation: catalogHeaderEnter 0.38s ease both;
+  animation:
+    catalogHeaderEnter
+    0.38s
+    ease
+    both;
 }
 
 @keyframes catalogHeaderEnter {
   from {
     opacity: 0;
-    transform: translateX(22px);
+
+    transform:
+      translateX(22px);
   }
 
   to {
     opacity: 1;
-    transform: translateX(0);
+
+    transform:
+      translateX(0);
   }
 }

@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 import { catalogSections } from "@/data/catalogSections";
 import styles from "@/app/Catalog/catalogo.module.css";
 
@@ -7,10 +9,12 @@ import {
   Box,
   Cable,
   Grid2X2,
+  Menu,
   Network,
   Router,
   Server,
   Wrench,
+  X,
 } from "lucide-react";
 
 interface CatalogSidebarProps {
@@ -31,16 +35,51 @@ export default function CatalogSidebar({
   activeCategory,
   onCategoryChange,
 }: CatalogSidebarProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleSelect = (category: string) => {
+    onCategoryChange(category);
+
+    // En móvil cerramos el menú después de seleccionar.
+    setIsOpen(false);
+  };
+
   return (
     <aside className={styles.sidebar}>
       <div className={styles.sidebarHeader}>
-        <span className={styles.sidebarAccent} />
+        <div className={styles.sidebarHeaderText}>
+          <span className={styles.sidebarAccent} />
 
-        <h2>Product Catalog</h2>
-        <p>Industrial Solutions</p>
+          <h2>Product Catalog</h2>
+          <p>Industrial Solutions</p>
+        </div>
+
+        <button
+          type="button"
+          className={styles.sidebarMenuButton}
+          onClick={() => setIsOpen((current) => !current)}
+          aria-expanded={isOpen}
+          aria-controls="catalog-filter-menu"
+          aria-label={
+            isOpen
+              ? "Close catalog filters"
+              : "Open catalog filters"
+          }
+        >
+          {isOpen ? (
+            <X aria-hidden="true" />
+          ) : (
+            <Menu aria-hidden="true" />
+          )}
+        </button>
       </div>
 
-      <nav className={styles.sidebarNav}>
+      <nav
+        id="catalog-filter-menu"
+        className={`${styles.sidebarNav} ${
+          isOpen ? styles.sidebarNavOpen : ""
+        }`}
+      >
         <button
           type="button"
           className={`${styles.sidebarItem} ${
@@ -48,11 +87,12 @@ export default function CatalogSidebar({
               ? styles.sidebarItemActive
               : ""
           }`}
-          onClick={() => onCategoryChange("all")}
+          onClick={() => handleSelect("all")}
         >
           <span className={styles.sidebarIcon}>
             <Grid2X2 aria-hidden="true" />
           </span>
+
           <span>ALL PRODUCTS</span>
         </button>
 
@@ -71,11 +111,14 @@ export default function CatalogSidebar({
                   ? styles.sidebarItemActive
                   : ""
               }`}
-              onClick={() => onCategoryChange(section.id)}
+              onClick={() =>
+                handleSelect(section.id)
+              }
             >
               <span className={styles.sidebarIcon}>
                 <Icon aria-hidden="true" />
               </span>
+
               <span>{section.name}</span>
             </button>
           );
