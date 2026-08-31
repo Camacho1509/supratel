@@ -31,14 +31,6 @@ export default function Footer() {
           All rights reserved.
         </p>
 
-        {/* LEGAL */}
-        <p className={styles.label}>LEGAL</p>
-
-        {/* LINKS */}
-        <div className={styles.legalLinks}>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-        </div>
       </div>
     </footer>
   );
