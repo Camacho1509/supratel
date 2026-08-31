@@ -10,7 +10,7 @@ export default function FloatingWhatsApp() {
 
   return (
     <a
-      href="https://wa.me/33651437980"
+      href="https://wa.me/33781724805"
       target="_blank"
       rel="noopener noreferrer"
       className={styles.whatsappButton}

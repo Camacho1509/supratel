@@ -3,14 +3,48 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import styles from "@/css/Navbar.module.css";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { translations } from "@/i18n/translations";
+import { translations, type Language } from "@/i18n/translations";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const { language, toggleLanguage } = useLanguage();
+  const { language, setLanguage } = useLanguage();
   const t = translations[language];
+
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+  const languageMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (
+        languageMenuRef.current &&
+        !languageMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsLanguageOpen(false);
+      }
+    };
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsLanguageOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, []);
+
+  const selectLanguage = (newLanguage: Language) => {
+    setLanguage(newLanguage);
+    setIsLanguageOpen(false);
+  };
 
   return (
     <header className={styles.navbar}>
@@ -56,7 +90,7 @@ export default function Navbar() {
             {t.nav.overview}
           </Link>
 
-           <Link
+          <Link
             href="/Catalog"
             className={pathname === "/Catalog" ? styles.activeLink : ""}
           >
@@ -71,7 +105,7 @@ export default function Navbar() {
           <div className={styles.contactInfo}>
             {/* WHATSAPP */}
             <a
-              href="https://wa.me/33651437980"
+              href="https://wa.me/33781724805"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.contactLink}
@@ -88,7 +122,7 @@ export default function Navbar() {
                 />
               </svg>
 
-              <span>(33) 6514 37980</span>
+              <span>(33) 781 724 805</span>
             </a>
 
             {/* EMAIL */}
@@ -113,39 +147,99 @@ export default function Navbar() {
           </div>
 
           {/* =====================================
-              IDIOMA
+              SELECTOR DE IDIOMA
           ===================================== */}
-          <button
-            type="button"
-            className={styles.language}
-            onClick={toggleLanguage}
-            aria-label={t.nav.switchLanguageAria}
-            title={language === "en" ? "Español" : "English"}
-          >
-            <svg
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-              className={styles.globeIcon}
+          <div className={styles.languageSelector} ref={languageMenuRef}>
+            <button
+              type="button"
+              className={`${styles.language} ${
+                isLanguageOpen ? styles.languageOpen : ""
+              }`}
+              onClick={() => setIsLanguageOpen((current) => !current)}
+              aria-label={t.nav.switchLanguageAria}
+              aria-haspopup="menu"
+              aria-expanded={isLanguageOpen}
             >
-              <circle
-                cx="12"
-                cy="12"
-                r="9"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.6"
-              />
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                className={styles.globeIcon}
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="9"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                />
 
-              <path
-                d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3c-2.4 2.5-3.6 5.5-3.6 9S9.6 18.5 12 21"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.6"
-              />
-            </svg>
+                <path
+                  d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9S14.4 18.5 12 21M12 3c-2.4 2.5-3.6 5.5-3.6 9S9.6 18.5 12 21"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                />
+              </svg>
 
-            <span>{language.toUpperCase()}</span>
-          </button>
+              <span>{language.toUpperCase()}</span>
+
+              <svg
+                viewBox="0 0 20 20"
+                aria-hidden="true"
+                className={styles.languageChevron}
+              >
+                <path
+                  d="m5 7.5 5 5 5-5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+
+            {isLanguageOpen && (
+              <div className={styles.languageDropdown} role="menu">
+                <button
+                  type="button"
+                  role="menuitemradio"
+                  aria-checked={language === "en"}
+                  className={`${styles.languageOption} ${
+                    language === "en" ? styles.languageOptionActive : ""
+                  }`}
+                  onClick={() => selectLanguage("en")}
+                >
+                  <span className={styles.languageCode}>EN</span>
+                  <span>English</span>
+                  {language === "en" && (
+                    <span className={styles.languageCheck} aria-hidden="true">
+                      ✓
+                    </span>
+                  )}
+                </button>
+
+                <button
+                  type="button"
+                  role="menuitemradio"
+                  aria-checked={language === "es"}
+                  className={`${styles.languageOption} ${
+                    language === "es" ? styles.languageOptionActive : ""
+                  }`}
+                  onClick={() => selectLanguage("es")}
+                >
+                  <span className={styles.languageCode}>ES</span>
+                  <span>Español</span>
+                  {language === "es" && (
+                    <span className={styles.languageCheck} aria-hidden="true">
+                      ✓
+                    </span>
+                  )}
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </header>
