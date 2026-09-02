@@ -127,7 +127,7 @@ export default function Navbar() {
 
             {/* EMAIL */}
             <a
-              href="mailto:contacto@eepsa.com.mx"
+              href="mailto:contact@supratelgroup.com"
               className={styles.contactLink}
               aria-label={t.nav.emailAria}
             >
@@ -142,7 +142,7 @@ export default function Navbar() {
                 />
               </svg>
 
-              <span>contacto@eepsa.com.mx</span>
+              <span>contact@supratelgroup.com</span>
             </a>
           </div>
 
